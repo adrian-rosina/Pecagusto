@@ -211,6 +211,32 @@
       actualizarCarrito();
     }
   </script>
+<script>
+  document.querySelectorAll('.slider').forEach(slider => {
+    const imgs = slider.querySelectorAll('img');
+    const prev = slider.querySelector('.prev');
+    const next = slider.querySelector('.next');
+    let index = 0;
+
+    function mostrarImagen(i) {
+      imgs.forEach((img, idx) => {
+        img.classList.toggle('active', idx === i);
+      });
+    }
+
+    mostrarImagen(index);
+
+    prev.addEventListener('click', () => {
+      index = (index - 1 + imgs.length) % imgs.length;
+      mostrarImagen(index);
+    });
+
+    next.addEventListener('click', () => {
+      index = (index + 1) % imgs.length;
+      mostrarImagen(index);
+    });
+  });
+</script>
 
 </body>
 </html>
