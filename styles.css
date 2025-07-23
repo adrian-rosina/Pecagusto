@@ -181,17 +181,14 @@ section {
 
 .slider img {
   width: 100%;
-  height: auto;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  opacity: 0;
-  transition: all 0.5s ease;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+  border-radius: 10px;
 }
 
 .slider img.active {
-  left: 0;
-  opacity: 1;
+  display: block;
 }
 
 .slider button.prev,
@@ -199,17 +196,19 @@ section {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.7);
   border: none;
-  padding: 5px 10px;
+  padding: 6px 10px;
   cursor: pointer;
   font-size: 18px;
+  border-radius: 5px;
   z-index: 2;
 }
 
 .slider button.prev {
   left: 10px;
 }
+
 .slider button.next {
   right: 10px;
 }

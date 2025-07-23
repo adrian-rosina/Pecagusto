@@ -58,15 +58,18 @@
         <!-- ⭐ NUEVO: Atributos + botón -->
         <div class="producto" data-nombre="Cuchillo Pegagusto" data-precio="29.99">
           <div class="slider">
-          <img src="imagenes/Imagenes productos/Cuchillo1.jpeg" alt="Cuchillo Pegagusto">
+          <img src="imagenes/Imagenes productos/Cuchillo1.jpeg" alt="active">
           <img src="imagenes/Imagenes productos/Cuchillo2.jpeg" alt="CuchilloPeca2">
           <img src="imagenes/Imagenes productos/Cuchillo3.jpeg" alt="CuchilloPeca3">
-    
+          <button class="prev">←</button>
+          <button class="next">→</button>
+          </div>
+          
           <h3>Cuchillo Pegagusto</h3>
           <p>Descripción breve del producto.</p>
           <span class="precio">29,99 €</span>
           <button class="btn-carrito">Añadir al carrito</button>
-          </div>
+          
         </div>
         
         <div class="producto" data-nombre="Afilador Pegagusto" data-precio="24.99">
@@ -164,79 +167,92 @@
 
   <!-- ⭐ NUEVO: Script funcional del carrito -->
   <script>
-    const botones = document.querySelectorAll('.btn-carrito');
-    const listaCarrito = document.getElementById('lista-carrito');
-    const totalElemento = document.getElementById('total');
+  const botones = document.querySelectorAll('.btn-carrito');
+  const listaCarrito = document.getElementById('lista-carrito');
+  const totalElemento = document.getElementById('total');
+  const mensaje = document.getElementById('mensaje-carrito');
+  const contador = document.getElementById('contador-carrito');
 
-    let carrito = [];
+  let carrito = [];
 
-    botones.forEach(boton => {
-      boton.addEventListener('click', () => {
-        const producto = boton.closest('.producto');
-        const nombre = producto.getAttribute('data-nombre');
-        const precio = parseFloat(producto.getAttribute('data-precio'));
+  botones.forEach(boton => {
+    boton.addEventListener('click', () => {
+      const producto = boton.closest('.producto');
+      const nombre = producto.getAttribute('data-nombre');
+      const precio = parseFloat(producto.getAttribute('data-precio'));
 
-        carrito.push({ nombre, precio });
-        actualizarCarrito();
-      });
+      carrito.push({ nombre, precio });
+      actualizarCarrito();
+      mostrarMensajeCarrito();
     });
-
- function actualizarCarrito() {
-  listaCarrito.innerHTML = '';
-  let total = 0;
-
-  carrito.forEach((item, index) => {
-    total += item.precio;
-
-    const li = document.createElement('li');
-    li.innerHTML = `
-      ${item.nombre} - ${item.precio.toFixed(2)} €
-      <button onclick="eliminarProducto(${index})">❌</button>
-    `;
-    listaCarrito.appendChild(li);
   });
 
-  totalElemento.textContent = `Total: ${total.toFixed(2)} €`;
-  document.getElementById('contador-carrito').textContent = carrito.length;
+  function actualizarCarrito() {
+    listaCarrito.innerHTML = '';
+    let total = 0;
 
-  // 🔴 Mostrar mensaje de añadido
-  const mensaje = document.getElementById('mensaje-carrito');
-  mensaje.style.display = 'block';
-  mensaje.style.opacity = '1';
-  mensaje.style.animation = 'fadeOut 3s forwards';
-}
+    carrito.forEach((item, index) => {
+      total += item.precio;
 
-    function eliminarProducto(index) {
-      carrito.splice(index, 1);
-      actualizarCarrito();
-    }
-  </script>
+      const li = document.createElement('li');
+      li.innerHTML = `
+        ${item.nombre} - ${item.precio.toFixed(2)} €
+        <button onclick="eliminarProducto(${index})">❌</button>
+      `;
+      listaCarrito.appendChild(li);
+    });
+
+    totalElemento.textContent = `Total: ${total.toFixed(2)} €`;
+    contador.textContent = carrito.length;
+  }
+
+  function eliminarProducto(index) {
+    carrito.splice(index, 1);
+    actualizarCarrito();
+  }
+
+  function mostrarMensajeCarrito() {
+    // 🔁 Reiniciar animación
+    mensaje.style.display = 'block';
+    mensaje.style.opacity = '1';
+    mensaje.classList.remove('animar');
+    void mensaje.offsetWidth; // fuerza reflow
+    mensaje.classList.add('animar');
+
+    // Ocultar al finalizar
+    setTimeout(() => {
+      mensaje.style.display = 'none';
+    }, 3000);
+  }
+</script>
+
 <script>
   document.querySelectorAll('.slider').forEach(slider => {
-    const imgs = slider.querySelectorAll('img');
-    const prev = slider.querySelector('.prev');
-    const next = slider.querySelector('.next');
+    const images = slider.querySelectorAll('img');
+    const prevBtn = slider.querySelector('.prev');
+    const nextBtn = slider.querySelector('.next');
     let index = 0;
 
     function mostrarImagen(i) {
-      imgs.forEach((img, idx) => {
-        img.classList.toggle('active', idx === i);
+      images.forEach((img, j) => {
+        img.classList.toggle('active', j === i);
       });
     }
 
+    prevBtn.addEventListener('click', () => {
+      index = (index - 1 + images.length) % images.length;
+      mostrarImagen(index);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      index = (index + 1) % images.length;
+      mostrarImagen(index);
+    });
+
     mostrarImagen(index);
-
-    prev.addEventListener('click', () => {
-      index = (index - 1 + imgs.length) % imgs.length;
-      mostrarImagen(index);
-    });
-
-    next.addEventListener('click', () => {
-      index = (index + 1) % imgs.length;
-      mostrarImagen(index);
-    });
   });
 </script>
+
 
 </body>
 </html>
