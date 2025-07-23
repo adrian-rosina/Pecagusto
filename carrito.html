@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carrito de la compra - Pecagusto</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #fafafa;
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+    li {
+      background: white;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    li button {
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    #total {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+    #btn-pagar {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 12px 20px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    #btn-pagar:disabled {
+      background: #999;
+      cursor: not-allowed;
+    }
+    #mensaje-vacio {
+      color: #777;
+      font-style: italic;
+    }
+    a.volver {
+      display: inline-block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: #333;
+      border: 1px solid #333;
+      padding: 6px 12px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="volver">← Volver a la tienda</a>
+  <h1>Resumen de tu compra</h1>
+  <ul id="lista-carrito"></ul>
+  <p id="total">Total: 0,00 €</p>
+  <button id="btn-pagar" disabled>Pagar</button>
+
+  <script>
+    const listaCarrito = document.getElementById('lista-carrito');
+    const totalElemento = document.getElementById('total');
+    const btnPagar = document.getElementById('btn-pagar');
+
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    function actualizarCarrito() {
+      listaCarrito.innerHTML = '';
+
+      if (carrito.length === 0) {
+        listaCarrito.innerHTML = '<p id="mensaje-vacio">Tu carrito está vacío.</p>';
+        totalElemento.textContent = 'Total: 0,00 €';
+        btnPagar.disabled = true;
+        return;
+      }
+
+      let total = 0;
+      carrito.forEach((item, index) => {
+        total += item.precio;
+
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>${item.nombre} - ${item.precio.toFixed(2)} €</span>
+          <button onclick="eliminarProducto(${index})">❌</button>
+        `;
+        listaCarrito.appendChild(li);
+      });
+
+      totalElemento.textContent = `Total: ${total.toFixed(2)} €`;
+      btnPagar.disabled = false;
+    }
+
+    function eliminarProducto(index) {
+      carrito.splice(index, 1);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      actualizarCarrito();
+    }
+
+    btnPagar.addEventListener('click', () => {
+      alert('Función de pago no implementada. Aquí iría la integración con pasarela de pago.');
+      // Aquí puedes redirigir o implementar el pago real
+    });
+
+    actualizarCarrito();
+  </script>
+</body>
+</html>
