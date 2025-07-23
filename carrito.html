@@ -101,7 +101,7 @@
         const li = document.createElement('li');
         li.innerHTML = `
           <span>${item.nombre} - ${item.precio.toFixed(2)} €</span>
-          <button onclick="eliminarProducto(${index})">❌</button>
+          <button onclick="eliminarProducto(${index})">🗑️</button>
         `;
         listaCarrito.appendChild(li);
       });
