@@ -172,6 +172,48 @@ section {
   color: #ccc;
 }
 
+.slider {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.slider img {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.slider img.active {
+  left: 0;
+  opacity: 1;
+}
+
+.slider button.prev,
+.slider button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.7);
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 2;
+}
+
+.slider button.prev {
+  left: 10px;
+}
+.slider button.next {
+  right: 10px;
+}
+
 .precio {
   font-weight: bold;
   color: red;
