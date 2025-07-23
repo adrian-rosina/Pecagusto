@@ -175,6 +175,7 @@ section {
 .slider {
   position: relative;
   width: 100%;
+  height: 300px;
   aspect-ratio: 1 / 1;
   overflow: hidden;
 }
@@ -185,6 +186,7 @@ section {
   object-fit: cover;
   display: none;
   border-radius: 10px;
+  transition: all 0.5 ease;
 }
 
 .slider img.active {
