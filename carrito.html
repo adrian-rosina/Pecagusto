@@ -49,6 +49,53 @@
 
       <button onclick="window.location.href='index.html'" class="btn-volver">← Seguir comprando</button>
     </section>
+
+    <button class="btn-finalizar" onclick="mostrarFormulario()">🛒 Finalizar compra</button>
+
+<div id="formulario-compra" class="formulario-compra" style="display:none;">
+  <h3>Finaliza tu compra</h3>
+  <form id="form-checkout" onsubmit="enviarFormulario(event)">
+    
+    <label for="nombre">Nombre completo</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="email">Correo electrónico</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="telefono">Teléfono</label>
+    <input type="tel" id="telefono" name="telefono" required pattern="[0-9]{9}" placeholder="Ej: 612345678">
+
+    <label for="direccion">Dirección</label>
+    <input type="text" id="direccion" name="direccion" required>
+
+    <label for="ciudad">Ciudad</label>
+    <input type="text" id="ciudad" name="ciudad" required>
+
+    <label for="provincia">Provincia</label>
+    <input type="text" id="provincia" name="provincia" required>
+
+    <label for="cp">Código postal</label>
+    <input type="text" id="cp" name="cp" required pattern="[0-9]{5}" placeholder="Ej: 28001">
+
+    <label for="pago">Método de pago</label>
+    <select id="pago" name="pago" required>
+      <option value="">Selecciona una opción</option>
+      <option value="tarjeta">Tarjeta de crédito / débito</option>
+      <option value="paypal">PayPal</option>
+      <option value="contra">Pago contra reembolso</option>
+    </select>
+
+    <label for="comentarios">Comentarios adicionales</label>
+    <textarea id="comentarios" name="comentarios" rows="4" placeholder="Opcional"></textarea>
+
+    <div class="botones-formulario">
+      <button type="submit" class="btn-comprar">Confirmar pedido</button>
+      <button type="button" onclick="cancelarFormulario()">Cancelar</button>
+    </div>
+
+  </form>
+</div>
+
   </main>
 
   <!-- 🧾 SCRIPT PARA MOSTRAR CARRITO -->
@@ -91,6 +138,26 @@
 
     document.addEventListener('DOMContentLoaded', mostrarCarrito);
   </script>
+
+  <script>
+  function mostrarFormulario() {
+    document.getElementById("formulario-compra").style.display = "block";
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  }
+
+  function cancelarFormulario() {
+    document.getElementById("formulario-compra").style.display = "none";
+  }
+
+  function enviarFormulario(event) {
+    event.preventDefault();
+
+    // Simula envío (puedes conectar con back si quieres)
+    alert("¡Gracias por tu compra, " + document.getElementById("nombre").value + "!");
+    localStorage.removeItem('carrito');
+    window.location.href = "index.html"; // Redirigir tras compra
+  }
+</script>
 
 </body>
 </html>
