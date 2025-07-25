@@ -380,7 +380,7 @@ button:hover {
   border-radius: 10px;
 }
 
-#productos h2, #sobre-nosotros h2,  #contacto h2,  {
+#productos h2, #sobre-nosotros h2,  #contacto h2  {
   text-align: center;
   color: var(--color-principal);
   margin-bottom: 30px;
@@ -568,6 +568,59 @@ footer .redes {
   z-index: 1000;
   display: none;
   animation: fadeOut 3s forwards;
+}
+
+/*Carrito.html */
+
+.carrito-pagina {
+  max-width: 600px;
+  margin: 40px auto;
+  background-color: #121212;
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.carrito-pagina h2 {
+  text-align: center;
+  color: var(--color-principal);
+  margin-bottom: 20px;
+}
+
+.item-carrito {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f1f1f;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.item-carrito button {
+  background-color: var(--color-principal);
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.btn-volver {
+  margin-top: 20px;
+  background-color: var(--color-principal);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @keyframes fadeOut {

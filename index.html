@@ -37,8 +37,9 @@
     </nav>
 
     <!-- ⭐ Icono carrito fijo en header -->
-<div class="carrito-icono" onclick="document.getElementById('carrito').scrollIntoView({ behavior: 'smooth' })">
-  🛒 <span id="contador-carrito">0</span>
+<div class="carrito-icono" id="icono-carrito">
+  <img src="🛒" alt="Carrito" width="24">
+  <span id="contador-carrito">0</span>
 </div>
 
 <!-- ⭐ Mensaje emergente -->
@@ -67,7 +68,7 @@
           <h3>Cuchillo Pegagusto</h3>
           <p>Descripción breve del producto.</p>
           <span class="precio">29,99 €</span>
-          <button class="btn-carrito">Añadir al carrito</button>
+          <button class="btn-carrito" onclick="añadirAlCarritoYRedirigir(this)">Añadir al carrito</button>
           
         </div>
         
@@ -77,7 +78,7 @@
           <h3>Afilador Pegagusto</h3>
           <p>Descripción breve del producto.</p>
           <span class="precio">24,99 €</span>
-          <button class="btn-carrito">Añadir al carrito</button>
+          <button class="btn-carrito" onclick="añadirAlCarritoYRedirigir(this)">Añadir al carrito</button>
           
         </div>
 
@@ -86,19 +87,13 @@
           <h3>Kit cuchillo + afilador Pegagusto</h3>
           <p>Descripción breve del producto.</p>
           <span class="precio">49,99 €</span>
-          <button class="btn-carrito">Añadir al carrito</button>
+          <button class="btn-carrito" onclick="añadirAlCarritoYRedirigir(this)">Añadir al carrito</button>
         </div>
 
       </div>
     </section>
 
-    <!-- ⭐ NUEVO: Sección del carrito -->
-    <section id="carrito">
-      <h2>🛒 Carrito de la compra</h2>
-      <ul id="lista-carrito"></ul>
-      <p id="total">Total: 0,00 €</p>
-    </section>
-
+    
     <section id="sobre-nosotros">
       <h2>Sobre Nosotros</h2>
       <p>En Pecagusto compartimos recetas, trucos y consejos para que disfrutes cocinando en casa. Nos puedes seguir en nuestras redes para más contenido visual y directo desde la cocina.</p>
@@ -166,63 +161,18 @@
 
   <!-- ⭐ NUEVO: Script funcional del carrito -->
   <script>
-  const botones = document.querySelectorAll('.btn-carrito');
-  const listaCarrito = document.getElementById('lista-carrito');
-  const totalElemento = document.getElementById('total');
-  const mensaje = document.getElementById('mensaje-carrito');
-  const contador = document.getElementById('contador-carrito');
+function añadirAlCarritoYRedirigir(boton) {
+  const producto = boton.closest('.producto');
+  const nombre = producto.getAttribute('data-nombre');
+  const precio = parseFloat(producto.getAttribute('data-precio'));
 
-  let carrito = [];
+  let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  carrito.push({ nombre, precio });
+  localStorage.setItem('carrito', JSON.stringify(carrito));
 
-  botones.forEach(boton => {
-    boton.addEventListener('click', () => {
-      const producto = boton.closest('.producto');
-      const nombre = producto.getAttribute('data-nombre');
-      const precio = parseFloat(producto.getAttribute('data-precio'));
-
-      carrito.push({ nombre, precio });
-      actualizarCarrito();
-      mostrarMensajeCarrito();
-    });
-  });
-
-  function actualizarCarrito() {
-    listaCarrito.innerHTML = '';
-    let total = 0;
-
-    carrito.forEach((item, index) => {
-      total += item.precio;
-
-      const li = document.createElement('li');
-      li.innerHTML = `
-        ${item.nombre} - ${item.precio.toFixed(2)} €
-        <button onclick="eliminarProducto(${index})">❌</button>
-      `;
-      listaCarrito.appendChild(li);
-    });
-
-    totalElemento.textContent = `Total: ${total.toFixed(2)} €`;
-    contador.textContent = carrito.length;
-  }
-
-  function eliminarProducto(index) {
-    carrito.splice(index, 1);
-    actualizarCarrito();
-  }
-
-  function mostrarMensajeCarrito() {
-    // 🔁 Reiniciar animación
-    mensaje.style.display = 'block';
-    mensaje.style.opacity = '1';
-    mensaje.classList.remove('animar');
-    void mensaje.offsetWidth; // fuerza reflow
-    mensaje.classList.add('animar');
-
-    // Ocultar al finalizar
-    setTimeout(() => {
-      mensaje.style.display = 'none';
-    }, 3000);
-  }
+  // Redirige a carrito.html
+  window.location.href = "carrito.html";
+}
 </script>
 
 <script>
@@ -250,6 +200,51 @@
 
     mostrarImagen(index);
   });
+</script>
+
+<script>
+  function añadirAlCarritoYRedirigir(boton) {
+    const producto = boton.closest('.producto');
+    const nombre = producto.getAttribute('data-nombre');
+    const precio = parseFloat(producto.getAttribute('data-precio'));
+
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    carrito.push({ nombre, precio });
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+
+    mostrarMensajeCarrito();
+    actualizarContador(); // ✅ actualizar el contador
+  }
+
+  function mostrarMensajeCarrito() {
+    const mensaje = document.getElementById('mensaje-carrito');
+    mensaje.style.display = 'block';
+    mensaje.classList.remove('animar');
+    void mensaje.offsetWidth;
+    mensaje.classList.add('animar');
+    setTimeout(() => {
+      mensaje.style.display = 'none';
+    }, 3000);
+  }
+
+  function actualizarContador() {
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const contador = document.getElementById('contador-carrito');
+    if (contador) {
+      contador.textContent = carrito.length;
+    }
+  }
+
+  // ✅ Ejecutar al cargar página (para mantener contador actualizado)
+  document.addEventListener('DOMContentLoaded', actualizarContador);
+
+  // ✅ Redirigir al hacer clic en el icono
+  const iconoCarrito = document.getElementById('icono-carrito');
+  if (iconoCarrito) {
+    iconoCarrito.addEventListener('click', () => {
+      window.location.href = 'carrito.html';
+    });
+  }
 </script>
 
 
