@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Carrito de compra Pecagusto">
+  <title>Carrito - Pecagusto</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- 🟥 BANDA ENVÍO -->
+  <div class="banda-envio">
+    🚚 Envíos en 24/48 horas!
+  </div>
+
+  <!-- 🟥 HEADER IGUAL QUE INDEX -->
+  <header>
+    <img src="imagenes/logo_peca_sin_fondo.png" alt="Logo Pecagusto" class="logo">
+
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <label for="menu-toggle" class="menu-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+    <nav>
+      <ul>
+        <li><a href="index.html#productos">Productos</a></li>
+        <li><a href="index.html#sobre-nosotros">Sobre Nosotros</a></li>
+        <li><a href="index.html#portafolio">Recetas</a></li>
+        <li><a href="index.html#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <!-- 🛒 Icono con contador -->
+    <div class="carrito-icono" id="icono-carrito">
+      🛒 <span id="contador-carrito">0</span>
+    </div>
+  </header>
+
+  <!-- 🛒 CONTENIDO DEL CARRITO -->
+  <main>
+    <section class="carrito-pagina">
+      <h2>🛒 Tu carrito de Pecagusto</h2>
+      <div id="carrito-contenido"></div>
+      <p id="total">Total: 0,00 €</p>
+
+      <button onclick="window.location.href='index.html'" class="btn-volver">← Seguir comprando</button>
+    </section>
+
+    <button class="btn-finalizar" onclick="mostrarFormulario()">🛒 Finalizar compra</button>
+
+<div id="formulario-compra" class="formulario-compra" style="display:none;">
+  <h3>Finaliza tu compra</h3>
+  <form id="form-checkout" onsubmit="enviarFormulario(event)">
+    
+    <label for="nombre">Nombre completo</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="email">Correo electrónico</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="telefono">Teléfono</label>
+    <input type="tel" id="telefono" name="telefono" required pattern="[0-9]{9}" placeholder="Ej: 612345678">
+
+    <label for="direccion">Dirección</label>
+    <input type="text" id="direccion" name="direccion" required>
+
+    <label for="ciudad">Ciudad</label>
+    <input type="text" id="ciudad" name="ciudad" required>
+
+    <label for="provincia">Provincia</label>
+    <input type="text" id="provincia" name="provincia" required>
+
+    <label for="cp">Código postal</label>
+    <input type="text" id="cp" name="cp" required pattern="[0-9]{5}" placeholder="Ej: 28001">
+
+    <label for="pago">Método de pago</label>
+    <select id="pago" name="pago" required>
+      <option value="">Selecciona una opción</option>
+      <option value="tarjeta">Tarjeta de crédito / débito</option>
+      <option value="paypal">PayPal</option>
+      <option value="contra">Pago contra reembolso</option>
+    </select>
+
+    <label for="comentarios">Comentarios adicionales</label>
+    <textarea id="comentarios" name="comentarios" rows="4" placeholder="Opcional"></textarea>
+
+    <div class="botones-formulario">
+      <button type="submit" class="btn-comprar">Confirmar pedido</button>
+      <button type="button" onclick="cancelarFormulario()">Cancelar</button>
+    </div>
+
+  </form>
+</div>
+
+  </main>
+
+  <!-- 🧾 SCRIPT PARA MOSTRAR CARRITO -->
+  <script>
+    const contenedor = document.getElementById('carrito-contenido');
+    const totalElemento = document.getElementById('total');
+    const contador = document.getElementById('contador-carrito');
+
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    function mostrarCarrito() {
+      contenedor.innerHTML = '';
+      let total = 0;
+
+      if (carrito.length === 0) {
+        contenedor.innerHTML = "<p>Tu carrito está vacío.</p>";
+      } else {
+        carrito.forEach((item, index) => {
+          total += item.precio;
+
+          const div = document.createElement('div');
+          div.className = 'item-carrito';
+          div.innerHTML = `
+            <p><strong>${item.nombre}</strong> - ${item.precio.toFixed(2)} €</p>
+            <button onclick="eliminarProducto(${index})">❌</button>
+          `;
+          contenedor.appendChild(div);
+        });
+      }
+
+      totalElemento.textContent = `Total: ${total.toFixed(2)} €`;
+      contador.textContent = carrito.length;
+    }
+
+    function eliminarProducto(index) {
+      carrito.splice(index, 1);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      mostrarCarrito();
+    }
+
+    document.addEventListener('DOMContentLoaded', mostrarCarrito);
+  </script>
+
+  <script>
+  function mostrarFormulario() {
+    document.getElementById("formulario-compra").style.display = "block";
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  }
+
+  function cancelarFormulario() {
+    document.getElementById("formulario-compra").style.display = "none";
+  }
+
+  function enviarFormulario(event) {
+    event.preventDefault();
+
+    // Simula envío (puedes conectar con back si quieres)
+    alert("¡Gracias por tu compra, " + document.getElementById("nombre").value + "!");
+    localStorage.removeItem('carrito');
+    window.location.href = "index.html"; // Redirigir tras compra
+  }
+</script>
+
+</body>
+</html>

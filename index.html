@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Recetas, tips y trucos de cocina con Pecagusto.">
+  <meta name="author" content="Pecagusto">
+  <meta name="keywords" content="recetas, cocina, gastronomía, pecagusto, cocina fácil, contenido culinario">
+  <title>Pecagusto - Cocina con Sabor</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="banda-envio">
+    🚚 Envíos en 24/48 horas!
+  </div>
+
+  <header>
+    <img src="imagenes/logo_peca_sin_fondo.png" alt="Logo Pecagusto" class="logo">
+    
+    <!-- Menú hamburguesa -->
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <label for="menu-toggle" class="menu-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+    <!-- Menú de navegación -->
+    <nav>
+      <ul>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+        <li><a href="#portafolio">Recetas</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <!-- ⭐ Icono carrito fijo en header -->
+<div class="carrito-icono" id="icono-carrito">
+  🛒  <span id="contador-carrito">0</span>
+</div>
+
+<!-- ⭐ Mensaje emergente -->
+<div id="mensaje-carrito">Producto añadido correctamente ✅</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>🍴Entre lo divino y lo terrenal</h2>
+      <p>Aquí el fuego no se negocia: cocina callejera con alma, sabor que levanta pasiones y recetas hechas con puro corazón.</p>
+    </section>
+
+    <section id="productos">
+      <h2>Productos</h2>
+      <div class="grid-productos">
+        
+        <!-- ⭐ NUEVO: Atributos + botón -->
+        <div class="producto" data-nombre="Cuchillo Pegagusto" data-precio="29.99">
+          <div class="slider">
+          <img src="imagenes/Imagenes productos/Cuchillo1.jpeg" alt="active">
+          <img src="imagenes/Imagenes productos/Cuchillo2.jpeg" alt="CuchilloPeca2">
+          <img src="imagenes/Imagenes productos/Cuchillo3.jpeg" alt="CuchilloPeca3">
+          <button class="prev">←</button>
+          <button class="next">→</button>
+          </div>
+          <h3>Cuchillo Pegagusto</h3>
+          <p>Descripción breve del producto.</p>
+          <span class="precio">29,99 €</span>
+          <button class="btn-carrito" onclick="añadirAlCarritoYRedirigir(this)">Añadir al carrito</button>
+          
+        </div>
+        
+        <div class="producto" data-nombre="Afilador Pegagusto" data-precio="24.99">
+          
+          <img src="imagenes/Imagenes productos/Afilador1.jpeg" alt="Afilador Pegagusto">
+          <h3>Afilador Pegagusto</h3>
+          <p>Descripción breve del producto.</p>
+          <span class="precio">24,99 €</span>
+          <button class="btn-carrito" onclick="añadirAlCarritoYRedirigir(this)">Añadir al carrito</button>
+          
+        </div>
+
+        <div class="producto" data-nombre="Kit cuchillo + afilador Pegagusto" data-precio="49.99">
+          <img src="imagenes/Imagenes productos/Afilador + Cuchillo.jpeg" alt="Afilador y cuchillo Pegagusto">
+          <h3>Kit cuchillo + afilador Pegagusto</h3>
+          <p>Descripción breve del producto.</p>
+          <span class="precio">49,99 €</span>
+          <button class="btn-carrito" onclick="añadirAlCarritoYRedirigir(this)">Añadir al carrito</button>
+        </div>
+
+      </div>
+    </section>
+
+    
+    <section id="sobre-nosotros">
+      <h2>Sobre Nosotros</h2>
+      <p>En Pecagusto compartimos recetas, trucos y consejos para que disfrutes cocinando en casa. Nos puedes seguir en nuestras redes para más contenido visual y directo desde la cocina.</p>
+    
+      <div class="galeria-sobre-nosotros">
+        <img src="imagenes/valores.png" alt="Valores" class="valores-grande">
+        <div class="columna-imagenes">
+          <img src="imagenes/vision.png" alt="Vision" class="valores-pequeña">
+          <img src="imagenes/mision.png" alt="Mision" class="valores-pequeña">
+        </div>
+      </div>
+    </section>
+
+    <section id="portafolio">
+      <h2>Síguenos en nuestras redes sociales para no perderte nuestras recetas → <span class="pecagusto"> @pecagusto</span></h2>
+      <div class="grid-portafolio">
+        <article>
+          <img src="imagenes/imagenes recetas/Burguer David Muñoz.jpeg" alt="McExtreme Bacon">
+          <h3>Burguer Dabiz Muñoz</h3>
+          <p>Una receta fácil y deliciosa, perfecta para sorprender en casa.</p>
+        </article>
+        <article>
+          <img src="imagenes/imagenes recetas/Macas Cheeses.jpeg" alt="Turrón Jordi Roca">
+          <h3>Macarrones con salsa de queso</h3>
+          <p>Tradicionales, crujientes y con mucho sabor a hogar.</p>
+        </article>
+        <article>
+          <img src="imagenes/imagenes recetas/Meloso de pulpo.jpeg" alt="Arroz de rabo de toro">
+          <h3>Arroz meloso de pulpo</h3>
+          <p>Una opción saludable sin perder el toque gourmet.</p>
+        </article>
+        <article>
+          <img src="imagenes/imagenes recetas/Tallarines con ternera.jpeg" alt="Steak tartar">
+          <h3>Tallarines con ternera</h3>
+          <p>Esponjoso, dulce y perfecto para cualquier momento del día.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <form>
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="email">Correo Electrónico</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Pecagusto. Todos los derechos reservados.</p>
+    <div class="redes">
+      <a href="https://www.youtube.com/@Pecagusto" target="_blank">YouTube</a>
+      <a href="https://www.instagram.com/pecagusto/" target="_blank">Instagram</a>
+      <a href="https://www.tiktok.com/@pecagusto" target="_blank">TikTok</a>
+    </div>
+  </footer>
+
+  <!-- ⭐ NUEVO: Script funcional del carrito -->
+  <script>
+function añadirAlCarritoYRedirigir(boton) {
+  const producto = boton.closest('.producto');
+  const nombre = producto.getAttribute('data-nombre');
+  const precio = parseFloat(producto.getAttribute('data-precio'));
+
+  let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  carrito.push({ nombre, precio });
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+
+  // Redirige a carrito.html
+  window.location.href = "carrito.html";
+}
+</script>
+
+<script>
+  document.querySelectorAll('.slider').forEach(slider => {
+    const images = slider.querySelectorAll('img');
+    const prevBtn = slider.querySelector('.prev');
+    const nextBtn = slider.querySelector('.next');
+    let index = 0;
+
+    function mostrarImagen(i) {
+      images.forEach((img, j) => {
+        img.classList.toggle('active', j === i);
+      });
+    }
+
+    prevBtn.addEventListener('click', () => {
+      index = (index - 1 + images.length) % images.length;
+      mostrarImagen(index);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      index = (index + 1) % images.length;
+      mostrarImagen(index);
+    });
+
+    mostrarImagen(index);
+  });
+</script>
+
+<script>
+  function añadirAlCarritoYRedirigir(boton) {
+    const producto = boton.closest('.producto');
+    const nombre = producto.getAttribute('data-nombre');
+    const precio = parseFloat(producto.getAttribute('data-precio'));
+
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    carrito.push({ nombre, precio });
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+
+    mostrarMensajeCarrito();
+    actualizarContador(); // ✅ actualizar el contador
+  }
+
+  function mostrarMensajeCarrito() {
+    const mensaje = document.getElementById('mensaje-carrito');
+    mensaje.style.display = 'block';
+    mensaje.classList.remove('animar');
+    void mensaje.offsetWidth;
+    mensaje.classList.add('animar');
+    setTimeout(() => {
+      mensaje.style.display = 'none';
+    }, 3000);
+  }
+
+  function actualizarContador() {
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const contador = document.getElementById('contador-carrito');
+    if (contador) {
+      contador.textContent = carrito.length;
+    }
+  }
+
+  // ✅ Ejecutar al cargar página (para mantener contador actualizado)
+  document.addEventListener('DOMContentLoaded', actualizarContador);
+
+  // ✅ Redirigir al hacer clic en el icono
+  const iconoCarrito = document.getElementById('icono-carrito');
+  if (iconoCarrito) {
+    iconoCarrito.addEventListener('click', () => {
+      window.location.href = 'carrito.html';
+    });
+  }
+</script>
+
+
+</body>
+</html>
