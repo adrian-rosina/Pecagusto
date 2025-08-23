@@ -835,3 +835,13 @@ button[type="button"]:hover {
 .cookie-buttons button:hover {
   background: #b20710;
 }
+
+.cookie-content a {
+  color: #e50914; /* rojo Netflix */
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.cookie-content a:hover {
+  color: #ff1a2c; /* un rojo más brillante al pasar el mouse */
+}
