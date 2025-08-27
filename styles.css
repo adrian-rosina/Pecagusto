@@ -172,7 +172,7 @@ section {
 
 .producto {
   background-color: #111;
-  color: white;
+  color:var(--color-texto);
   width: 250px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.4);
@@ -193,6 +193,7 @@ section {
 .producto h3 {
   font-size: 1.1em;
   margin: 10px 0 5px;
+  color: var(--color-principal);
 }
 
 .producto p {
@@ -454,7 +455,7 @@ button:hover {
 }
 
 .grid-productos h3 {
-  color: var(--color-acento);
+  color: var(--color-principal);
   margin-bottom: 10px;
 }
 
