@@ -18,24 +18,17 @@
   <header>
     <img src="imagenes/logo_peca_sin_fondo.png" alt="Logo Pecagusto" class="logo">
     
-    <!-- Menú hamburguesa -->
-    <input type="checkbox" id="menu-toggle" class="menu-toggle">
-    <label for="menu-toggle" class="menu-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </label>
+<!-- Icono hamburguesa SOLO para móvil -->
 
-    <!-- Menú de navegación -->
-    <nav>
-      <ul>
-        <li><a href="#productos">Productos</a></li>
-        <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
-        <li><a href="#portafolio">Recetas</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-        <li><a href="curriculum.html">Curriculum Adrián Rosiña</a></li>
-      </ul>
-    </nav>
+
+<a href="#" id="enlace-menu" class="boton-menu">&#9776;</a>
+<nav id="menu" class="menu-principal">
+    <a href="#productos">Productos</a>
+    <a href="#sobre-nosotros">Sobre Nosotros</a>
+    <a href="#portafolio">Recetas</a>
+    <a href="#contacto">Contacto</a>
+    <a href="curriculum.html">Curriculum Adrián Rosiña</a>
+</nav>
 
     <!-- ⭐ Icono carrito fijo en header -->
 <div class="carrito-icono" id="icono-carrito">
@@ -57,7 +50,7 @@
       <div class="grid-productos">
         
         <!-- ⭐ NUEVO: Atributos + botón -->
-        <div class="producto" data-nombre="Cuchillo Pegagusto" data-precio="29.99">
+        <div class="producto" data-nombre="Cuchillo Pecagusto" data-precio="29.99">
           <div class="slider">
           <img src="imagenes/Imagenes productos/Cuchillo1.jpeg" alt="active">
           <img src="imagenes/Imagenes productos/Cuchillo2.jpeg" alt="CuchilloPeca2">
@@ -66,26 +59,26 @@
           <button class="next">→</button>
           </div>
           <h3>Cuchillo Pegagusto</h3>
-          <p>Descripción breve del producto.</p>
+          <p>Cuchillo estilo japones para un corte preciso</p>
           <span class="precio">29,99 €</span>
           <button class="btn-carrito" onclick="añadirAlCarritoYRedirigir(this)">Añadir al carrito</button>
           
         </div>
         
-        <div class="producto" data-nombre="Afilador Pegagusto" data-precio="24.99">
+        <div class="producto" data-nombre="Afilador Pecagusto" data-precio="24.99">
           
           <img src="imagenes/Imagenes productos/Afilador1.jpeg" alt="Afilador Pegagusto">
           <h3>Afilador Pegagusto</h3>
-          <p>Descripción breve del producto.</p>
+          <p>Afilador con 3 capas de material para un afilado perfecto</p>
           <span class="precio">24,99 €</span>
           <button class="btn-carrito" onclick="añadirAlCarritoYRedirigir(this)">Añadir al carrito</button>
           
         </div>
 
-        <div class="producto" data-nombre="Kit cuchillo + afilador Pegagusto" data-precio="49.99">
+        <div class="producto" data-nombre="Kit cuchillo + afilador Pecagusto" data-precio="49.99">
           <img src="imagenes/Imagenes productos/Afilador + Cuchillo.jpeg" alt="Afilador y cuchillo Pegagusto">
           <h3>Kit cuchillo + afilador Pegagusto</h3>
-          <p>Descripción breve del producto.</p>
+          <p>Con este pack no se te resistirá ningún corte</p>
           <span class="precio">49,99 €</span>
           <button class="btn-carrito" onclick="añadirAlCarritoYRedirigir(this)">Añadir al carrito</button>
         </div>
@@ -306,6 +299,26 @@ function añadirAlCarritoYRedirigir(boton) {
       cookiePopup.style.display = "none";
     });
   });
+
+  
+</script>
+
+<script>
+  let lanzador = "#enlace-menu";
+let desplegable = "#menu";
+let despliegaClase = "menu-desplegado";
+
+function nav(){
+    let lanz = document.querySelector(lanzador);
+    lanz.addEventListener("click",despliegaMenu);
+}
+
+function despliegaMenu(){
+    let despl = document.querySelector(desplegable);
+    despl.classList.toggle(despliegaClase);
+}
+
+nav();
 </script>
 </body>
 </html>

@@ -17,6 +17,13 @@
 @font-face {
   font-family: 'SpriteGraffiti';
   src: url('fuentes/Sprite\ Graffiti.otf') format('truetype');
+
+}
+
+/* Lacquer */
+@font-face {
+  font-family: 'Lacquer';
+  src: url('fuentes/Lacquer-Regular.ttf') format('truetype');
 }
 
 /* ========== Estilos globales ========== */
@@ -59,6 +66,11 @@ p{
   box-shadow: 0 2px 5px rgba(0,0,0,0.4);
 }
 
+.hero p {
+  font-family: 'Lacquer', sans-serif; /* primero Lacquer, si falla usa sans-serif */
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
 /* ========== Header ========== */
 header {
   background-size: cover;
@@ -83,27 +95,38 @@ header h1 {
   height: auto;
   border-radius: 8px;
 }
-/* Oculta checkbox */
-.menu-toggle {
+.boton-menu{
+  font-size: 28px;
+  color: #fff;
+  text-decoration: none;
   display: none;
-}
-
-/* Estilo icono hamburguesa */
-.menu-icon {
-  display: none;
-  flex-direction: column;
   cursor: pointer;
-  gap: 5px;
-  margin-left: auto;
-  padding: 10px;
+  transition: transform 0.3s ease;
 }
 
-.menu-icon span {
-  width: 30px;
-  height: 3px;
-  background-color: white;
-  border-radius: 3px;
+.boton-menu:hover{
+  transform: scale(1.1);
 }
+
+.menu-principal{
+  display: flex;
+  gap: 24px;
+}
+
+.menu-principal a{
+  color: var(--color-texto);
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.menu-principal a:hover{
+  background-color: var(--color-principal);
+  color: var(--color-acento);
+}
+ 
 /* ========== Navegación ========== */
 nav ul {
   list-style: none;
@@ -219,6 +242,7 @@ section {
 .slider button.next {
   right: 10px;
 }
+
 
 .precio {
   font-weight: bold;
@@ -379,6 +403,10 @@ button:hover {
   background-color: #1a1a1a;
   padding: 40px 20px;
   border-radius: 10px;
+}
+
+#sobre-nosotros p{
+  font-family: 'Lacquer', sans-serif;
 }
 
 #productos h2, #sobre-nosotros h2,  #contacto h2  {
@@ -729,8 +757,9 @@ button[type="button"]:hover {
 
 
 /* ========== Responsive design ========== */
-@media screen and (max-width: 999px) {
+@media screen and (max-width: 1051px) {
   header {
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -742,28 +771,31 @@ button[type="button"]:hover {
     width: 150px;
     margin: 0 auto;
   }
-
-  .menu-icon {
-    display: flex;
-    align-self: flex-end;
-    margin-right: 20px;
-  }
-
-  nav ul {
+  .boton-menu{
+    display: block;
+}
+.menu-principal{
     display: none;
     flex-direction: column;
+    gap: 12px;
+    background-color: var(--color-fondo);
     position: absolute;
-    top: 180px; /* ajusta si el logo cambia de altura */
-    right: 20px;
-    background-color: #1f1f1f;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  }
-
-  .menu-toggle:checked + .menu-icon + nav ul {
+    top:25%;
+    right: 0;
+    left: 0;
+    padding: 15px 20px;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+.menu-principal.menu-desplegado{
     display: flex;
-  }
+}
+
+.menu-principal a{
+    padding: 10px 12px;
+    font-size: 17px;
+}
+
 
 .grid-productos {
     display: flex;
