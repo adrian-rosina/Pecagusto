@@ -7,7 +7,9 @@
   <meta name="author" content="Pecagusto">
   <meta name="keywords" content="recetas, cocina, gastronomía, pecagusto, cocina fácil, contenido culinario">
   <title>Pecagusto - Cocina con Sabor</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/styles.css">
+  
+
 </head>
 <body>
 
@@ -192,94 +194,7 @@
     </div>
   </footer>
 
-  <!-- ⭐ NUEVO: Script funcional del carrito -->
-  <script>
-function añadirAlCarritoYRedirigir(boton) {
-  const producto = boton.closest('.producto');
-  const nombre = producto.getAttribute('data-nombre');
-  const precio = parseFloat(producto.getAttribute('data-precio'));
-
-  let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-  carrito.push({ nombre, precio });
-  localStorage.setItem('carrito', JSON.stringify(carrito));
-
-  // Redirige a carrito.html
-  window.location.href = "carrito.html";
-}
-</script>
-
-<script>
-  document.querySelectorAll('.slider').forEach(slider => {
-    const images = slider.querySelectorAll('img');
-    const prevBtn = slider.querySelector('.prev');
-    const nextBtn = slider.querySelector('.next');
-    let index = 0;
-
-    function mostrarImagen(i) {
-      images.forEach((img, j) => {
-        img.classList.toggle('active', j === i);
-      });
-    }
-
-    prevBtn.addEventListener('click', () => {
-      index = (index - 1 + images.length) % images.length;
-      mostrarImagen(index);
-    });
-
-    nextBtn.addEventListener('click', () => {
-      index = (index + 1) % images.length;
-      mostrarImagen(index);
-    });
-
-    mostrarImagen(index);
-  });
-</script>
-
-<script>
-  function añadirAlCarritoYRedirigir(boton) {
-    const producto = boton.closest('.producto');
-    const nombre = producto.getAttribute('data-nombre');
-    const precio = parseFloat(producto.getAttribute('data-precio'));
-
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    carrito.push({ nombre, precio });
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-
-    mostrarMensajeCarrito();
-    actualizarContador(); // ✅ actualizar el contador
-  }
-
-  function mostrarMensajeCarrito() {
-    const mensaje = document.getElementById('mensaje-carrito');
-    mensaje.style.display = 'block';
-    mensaje.classList.remove('animar');
-    void mensaje.offsetWidth;
-    mensaje.classList.add('animar');
-    setTimeout(() => {
-      mensaje.style.display = 'none';
-    }, 3000);
-  }
-
-  function actualizarContador() {
-    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    const contador = document.getElementById('contador-carrito');
-    if (contador) {
-      contador.textContent = carrito.length;
-    }
-  }
-
-  // ✅ Ejecutar al cargar página (para mantener contador actualizado)
-  document.addEventListener('DOMContentLoaded', actualizarContador);
-
-  // ✅ Redirigir al hacer clic en el icono
-  const iconoCarrito = document.getElementById('icono-carrito');
-  if (iconoCarrito) {
-    iconoCarrito.addEventListener('click', () => {
-      window.location.href = 'carrito.html';
-    });
-  }
-</script>
-
+ 
 <div id="cookie-popup" class="cookie-popup">
   <div class="cookie-content">
     <p>Usamos cookies para mejorar tu experiencia en Pecagusto 🍪 <a href="#">Saber más</a></p>
@@ -289,48 +204,7 @@ function añadirAlCarritoYRedirigir(boton) {
     </div>
   </div>
 </div>
+<script src="js/documento.js"></script>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const cookiePopup = document.getElementById("cookie-popup");
-    const acceptBtn = document.getElementById("accept-cookies");
-    const rejectBtn = document.getElementById("reject-cookies");
-
-    // Mostrar popup solo si no hay decisión guardada
-    if (!localStorage.getItem("cookieConsent")) {
-      cookiePopup.style.display = "block";
-    }
-
-    acceptBtn.addEventListener("click", () => {
-      localStorage.setItem("cookieConsent", "accepted");
-      cookiePopup.style.display = "none";
-    });
-
-    rejectBtn.addEventListener("click", () => {
-      localStorage.setItem("cookieConsent", "rejected");
-      cookiePopup.style.display = "none";
-    });
-  });
-
-  
-</script>
-
-<script>
-  let lanzador = "#enlace-menu";
-let desplegable = "#menu";
-let despliegaClase = "menu-desplegado";
-
-function nav(){
-    let lanz = document.querySelector(lanzador);
-    lanz.addEventListener("click",despliegaMenu);
-}
-
-function despliegaMenu(){
-    let despl = document.querySelector(desplegable);
-    despl.classList.toggle(despliegaClase);
-}
-
-nav();
-</script>
 </body>
 </html>

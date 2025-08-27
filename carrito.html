@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Carrito de compra Pecagusto">
   <title>Carrito - Pecagusto</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
@@ -18,21 +18,16 @@
   <header>
     <img src="imagenes/logo_peca_sin_fondo.png" alt="Logo Pecagusto" class="logo">
 
-    <input type="checkbox" id="menu-toggle" class="menu-toggle">
-    <label for="menu-toggle" class="menu-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </label>
 
-    <nav>
-      <ul>
-        <li><a href="index.html#productos">Productos</a></li>
-        <li><a href="index.html#sobre-nosotros">Sobre Nosotros</a></li>
-        <li><a href="index.html#portafolio">Recetas</a></li>
-        <li><a href="index.html#contacto">Contacto</a></li>
-      </ul>
-    </nav>
+
+    <a href="#" id="enlace-menu" class="boton-menu">&#9776;</a>
+<nav id="menu" class="menu-principal">
+    <a href="#productos">Productos</a>
+    <a href="#sobre-nosotros">Sobre Nosotros</a>
+    <a href="#portafolio">Recetas</a>
+    <a href="#contacto">Contacto</a>
+    <a href="curriculum.html">Curriculum Adrián Rosiña</a>
+</nav>
 
     <!-- 🛒 Icono con contador -->
     <div class="carrito-icono" id="icono-carrito">
@@ -98,66 +93,7 @@
 
   </main>
 
-  <!-- 🧾 SCRIPT PARA MOSTRAR CARRITO -->
-  <script>
-    const contenedor = document.getElementById('carrito-contenido');
-    const totalElemento = document.getElementById('total');
-    const contador = document.getElementById('contador-carrito');
-
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
-    function mostrarCarrito() {
-      contenedor.innerHTML = '';
-      let total = 0;
-
-      if (carrito.length === 0) {
-        contenedor.innerHTML = "<p>Tu carrito está vacío.</p>";
-      } else {
-        carrito.forEach((item, index) => {
-          total += item.precio;
-
-          const div = document.createElement('div');
-          div.className = 'item-carrito';
-          div.innerHTML = `
-            <p><strong>${item.nombre}</strong> - ${item.precio.toFixed(2)} €</p>
-            <button onclick="eliminarProducto(${index})">❌</button>
-          `;
-          contenedor.appendChild(div);
-        });
-      }
-
-      totalElemento.textContent = `Total: ${total.toFixed(2)} €`;
-      contador.textContent = carrito.length;
-    }
-
-    function eliminarProducto(index) {
-      carrito.splice(index, 1);
-      localStorage.setItem('carrito', JSON.stringify(carrito));
-      mostrarCarrito();
-    }
-
-    document.addEventListener('DOMContentLoaded', mostrarCarrito);
-  </script>
-
-  <script>
-  function mostrarFormulario() {
-    document.getElementById("formulario-compra").style.display = "block";
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-  }
-
-  function cancelarFormulario() {
-    document.getElementById("formulario-compra").style.display = "none";
-  }
-
-  function enviarFormulario(event) {
-    event.preventDefault();
-
-    // Simula envío (puedes conectar con back si quieres)
-    alert("¡Gracias por tu compra, " + document.getElementById("nombre").value + "!");
-    localStorage.removeItem('carrito');
-    window.location.href = "index.html"; // Redirigir tras compra
-  }
-</script>
+  <script src="js/carrito.js"></script>
 
 </body>
 </html>
