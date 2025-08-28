@@ -1,11 +1,11 @@
-/* ========== Reset general ========== */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ========== Variables CSS ========== */
+
 :root {
   --color-principal: #e50914; /* Rojo estilo Netflix */
   --color-fondo: #0d0d0d;     /* Negro profundo */
@@ -20,13 +20,13 @@
 
 }
 
-/* Lacquer */
+
 @font-face {
   font-family: 'Lacquer';
   src: url('fuentes/Lacquer-Regular.ttf') format('truetype');
 }
 
-/* ========== Estilos globales ========== */
+
 body {
   font-family: 'SpriteGraffiti', sans-serif;
   background-color: var(--color-fondo);
@@ -71,7 +71,7 @@ p{
   font-size: 1.1rem;
   line-height: 1.5;
 }
-/* ========== Header ========== */
+
 header {
   background-size: cover;
   background-position: center;
@@ -127,7 +127,7 @@ header h1 {
   color: var(--color-acento);
 }
  
-/* ========== Navegación ========== */
+
 nav ul {
   list-style: none;
   display: flex;
@@ -140,7 +140,7 @@ nav li {
   font-weight: bold;
 }
 
-/* ========== Hero ========== */
+
 .hero {
   padding: 20px 0;
   text-align: center;
@@ -152,7 +152,7 @@ nav li {
   margin-bottom: 15px;
 }
 
-/* ========== Secciones comunes ========== */
+
 section {
   margin: 40px 0;
 }
@@ -166,7 +166,7 @@ section {
   display: grid;
   gap: 30px;
   padding: 20px;
-  justify-items: center;   /* centra horizontalmente cada card */
+  justify-items: center;   
 
 }
 
@@ -185,7 +185,7 @@ section {
 .producto img {
   width: 100%;
   height: 200px;
-  object-fit: cover; /* asegura mismo tamaño y recorte */
+  object-fit: cover; 
   border-radius: 10px;
   margin-bottom: 10px;
 }
@@ -268,7 +268,7 @@ section {
 }
 
 
-/* ========== Imágenes y galería en "Sobre Nosotros" ========== */
+
 .valores {
   max-width: 100%;
   width: 300px;
@@ -325,7 +325,7 @@ section {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* ========== Galería de recetas (Portafolio) ========== */
+
 .grid-portafolio {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -347,7 +347,7 @@ section {
   margin-bottom: 10px;
 }
 
-/* ========== Formulario ========== */
+
 form {
   display: flex;
   flex-direction: column;
@@ -480,7 +480,7 @@ button:hover {
   background-color: #b20710;
 }
 
-/* ========== Footer ========== */
+
 footer {
   text-align: center;
   padding: 20px;
@@ -498,7 +498,7 @@ footer .redes {
 }
 
 
-/* ========== CARRITO DE LA COMPRA ========== */
+
 #carrito {
   background-color: #1a1a1a;
   color: white;
@@ -555,7 +555,6 @@ footer .redes {
   font-weight: bold;
 }
 
-/* 🔴 Carrito fijo arriba derecha */
 .carrito-icono {
   position: absolute;
   top: 20px;
@@ -600,7 +599,7 @@ footer .redes {
   animation: fadeOut 3s forwards;
 }
 
-/*Carrito.html */
+
 
 .carrito-pagina {
   max-width: 600px;
@@ -660,7 +659,7 @@ footer .redes {
 }
 
 
-/* ========== Formulario de checkout ========== */
+
 .formulario-compra {
   margin-top: 30px;
   background-color: #1a1a1a;
@@ -732,7 +731,7 @@ button[type="button"]:hover {
   opacity: 0.9;
 }
 
-/* 🔴 Responsive: en móviles solo icono */
+
 @media screen and (max-width: 600px) {
   .carrito-icono {
     padding: 8px;
@@ -757,7 +756,7 @@ button[type="button"]:hover {
 }
 
 
-/* ========== Responsive design ========== */
+
 @media screen and (max-width: 1051px) {
   header {
     display: flex;
@@ -829,7 +828,6 @@ button[type="button"]:hover {
   }
 }
 
-/* POPUP COOKIES */
 
 .cookie-popup {
   position: fixed;
@@ -870,11 +868,11 @@ button[type="button"]:hover {
 }
 
 .cookie-content a {
-  color: #e50914; /* rojo Netflix */
+  color: #e50914; 
   font-weight: bold;
   text-decoration: underline;
 }
 
 .cookie-content a:hover {
-  color: #ff1a2c; /* un rojo más brillante al pasar el mouse */
+  color: #ff1a2c; 
 }

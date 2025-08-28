@@ -50,10 +50,10 @@
   function enviarFormulario(event) {
     event.preventDefault();
 
-    // Simula envío (puedes conectar con back si quieres)
+   
     alert("¡Gracias por tu compra, " + document.getElementById("nombre").value + "!");
     localStorage.removeItem('carrito');
-    window.location.href = "index.html"; // Redirigir tras compra
+    window.location.href = "index.html"; 
   }
 
 let lanzador = "#enlace-menu";
